@@ -2,145 +2,172 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<title>Buscador PS3</title>
+<title>Portal PS3</title>
 <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  background: #1a1a2e;
-  color: #e0e0e0;
+  background: #0d1117;
+  color: #c9d1d9;
   font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 20px;
-  font-size: 16px;
+  font-size: 15px;
+  padding: 16px;
 }
 h1 {
-  color: #00b4d8;
+  color: #58a6ff;
+  font-size: 22px;
   text-align: center;
-  font-size: 28px;
-  margin-bottom: 6px;
+  padding: 12px 0 4px;
 }
-p.sub {
+.badge {
+  display: block;
   text-align: center;
-  color: #aaa;
-  font-size: 13px;
-  margin-bottom: 30px;
+  font-size: 11px;
+  color: #8b949e;
+  margin-bottom: 20px;
 }
-.search-box {
-  background: #16213e;
-  border: 1px solid #0f3460;
-  border-radius: 8px;
-  padding: 18px 20px;
-  margin-bottom: 16px;
+.card {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
 }
-.search-box h2 {
-  color: #00b4d8;
-  font-size: 15px;
-  margin: 0 0 10px 0;
-}
-.search-box p.desc {
-  color: #888;
-  font-size: 12px;
-  margin: 0 0 10px 0;
-}
-input[type="text"] {
-  width: 68%;
-  padding: 8px 10px;
-  font-size: 15px;
-  border: 1px solid #0f3460;
-  background: #0d1b2a;
-  color: #fff;
-  border-radius: 4px;
-}
-input[type="submit"] {
-  padding: 8px 16px;
+.card h2 {
   font-size: 14px;
-  background: #00b4d8;
-  color: #000;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 8px;
-  font-weight: bold;
+  color: #58a6ff;
+  margin-bottom: 4px;
 }
-.tip {
-  background: #0f3460;
-  border-left: 4px solid #00b4d8;
-  padding: 12px 16px;
-  border-radius: 4px;
+.card p {
+  font-size: 11px;
+  color: #8b949e;
+  margin-bottom: 10px;
+}
+.row { display: table; width: 100%; }
+.row input[type="text"] {
+  display: table-cell;
+  width: 100%;
+  padding: 7px 10px;
+  font-size: 14px;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 4px 0 0 4px;
+  color: #c9d1d9;
+}
+.row button {
+  display: table-cell;
+  white-space: nowrap;
+  padding: 7px 14px;
+  background: #238636;
+  color: #fff;
+  border: 1px solid #2ea043;
+  border-radius: 0 4px 4px 0;
   font-size: 13px;
-  color: #ccc;
-  margin-top: 24px;
+  cursor: pointer;
 }
-.tip b { color: #00b4d8; }
-a { color: #00b4d8; }
+.tag {
+  display: inline-block;
+  font-size: 10px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.green { background: #1f6335; color: #3fb950; }
+.orange { background: #3d2e0a; color: #d29922; }
+
+.info {
+  background: #0d2137;
+  border: 1px solid #1f4e79;
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: #79c0ff;
+  margin-top: 8px;
+  line-height: 1.7;
+}
+.info b { color: #58a6ff; }
+code {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-size: 11px;
+  color: #e3b341;
+}
 </style>
 </head>
 <body>
 
-<h1>&#9679; Buscador PS3</h1>
-<p class="sub">Portal de busqueda optimizado para el navegador de PlayStation 3</p>
+<h1>&#9679; Portal PS3</h1>
+<span class="badge">Optimizado para PlayStation 3 &mdash; via Cloudflare</span>
 
-<!-- DuckDuckGo Lite - Mejor opcion para PS3 -->
-<div class="search-box">
-  <h2>&#9733; DuckDuckGo Lite <span style="color:#4caf50;font-size:11px;">[RECOMENDADO]</span></h2>
-  <p class="desc">Version minimalista, sin rastreo, compatible con navegadores antiguos.</p>
-  <form method="GET" action="https://lite.duckduckgo.com/lite/">
-    <input type="text" name="q" placeholder="Buscar en DuckDuckGo...">
-    <input type="submit" value="Buscar">
-  </form>
+<!-- WORKER SEARCH -->
+<div class="card">
+  <h2>Buscar en internet <span class="tag green">WORKER ACTIVO</span></h2>
+  <p>Resultados simplificados via Cloudflare Worker &mdash; compatible con PS3.</p>
+  <div class="row">
+    <input type="text" id="q1" placeholder="Que queres buscar...">
+    <button onclick="buscarWorker()">Buscar</button>
+  </div>
 </div>
 
-<!-- Wiby - motor simple -->
-<div class="search-box">
-  <h2>Wiby.me <span style="color:#ff9800;font-size:11px;">[PAGINAS CLASICAS]</span></h2>
-  <p class="desc">Busca sitios web simples y livianos, ideal para navegadores retro.</p>
-  <form method="GET" action="https://wiby.me/">
-    <input type="text" name="q" placeholder="Buscar en Wiby...">
-    <input type="submit" value="Buscar">
-  </form>
-</div>
-
-<!-- Bing basico -->
-<div class="search-box">
-  <h2>Bing</h2>
-  <p class="desc">Puede funcionar si se usa junto a un proxy local con TLS downgrade.</p>
-  <form method="GET" action="https://www.bing.com/search">
-    <input type="text" name="q" placeholder="Buscar en Bing...">
-    <input type="submit" value="Buscar">
+<!-- DDG LITE -->
+<div class="card">
+  <h2>DuckDuckGo Lite <span class="tag green">RECOMENDADO</span></h2>
+  <p>Version ultraliviana, sin scripts, funciona con TLS 1.0.</p>
+  <form method="GET" action="https://lite.duckduckgo.com/lite/" target="_top">
+    <div class="row">
+      <input type="text" name="q" placeholder="Buscar en DuckDuckGo...">
+      <button type="submit">Buscar</button>
+    </div>
   </form>
 </div>
 
 <!-- Wikipedia -->
-<div class="search-box">
-  <h2>Wikipedia</h2>
-  <p class="desc">Busca directamente en Wikipedia en espanol.</p>
-  <form method="GET" action="https://es.wikipedia.org/w/index.php">
-    <input type="text" name="search" placeholder="Buscar en Wikipedia...">
-    <input type="hidden" name="ns0" value="1">
-    <input type="submit" value="Buscar">
+<div class="card">
+  <h2>Wikipedia <span class="tag orange">PUEDE FALLAR TLS</span></h2>
+  <p>Enciclopedia libre en espanol.</p>
+  <form method="GET" action="https://es.m.wikipedia.org/w/index.php" target="_top">
+    <div class="row">
+      <input type="text" name="search" placeholder="Buscar en Wikipedia...">
+      <input type="hidden" name="ns0" value="1">
+      <button type="submit">Buscar</button>
+    </div>
   </form>
 </div>
 
-<!-- Archive.org -->
-<div class="search-box">
-  <h2>Internet Archive / Wayback Machine</h2>
-  <p class="desc">Accede a versiones antiguas de sitios web.</p>
-  <form method="GET" action="https://web.archive.org/web/*/">
-    <input type="text" name="q" placeholder="URL o tema a buscar...">
-    <input type="submit" value="Buscar">
+<!-- Wiby -->
+<div class="card">
+  <h2>Wiby.me <span class="tag green">PAGINAS CLASICAS</span></h2>
+  <p>Motor retro para sitios simples y livianos.</p>
+  <form method="GET" action="https://wiby.me/" target="_top">
+    <div class="row">
+      <input type="text" name="q" placeholder="Buscar en Wiby...">
+      <button type="submit">Buscar</button>
+    </div>
   </form>
 </div>
 
-<div class="tip">
-  <b>Consejo TLS:</b> Si los buscadores no cargan, el problema es el protocolo SSL/TLS. 
-  La PS3 solo soporta TLS 1.0 y la mayoria de sitios requieren TLS 1.2+.<br><br>
-  <b>Solucion local:</b> Instala <b>stunnel</b> o <b>Squid Proxy</b> en tu PC/router y 
-  configura la PS3 para usarlo. Esto hace el "puente" de TLS 1.0 a TLS 1.2 
-  de forma transparente.<br><br>
-  <b>Para hostear este archivo localmente (HTTP puro, sin TLS):</b><br>
-  En Windows: <code>python -m http.server 8080</code> en la carpeta con este archivo.<br>
-  Luego en PS3 accede a: <code>http://[IP-de-tu-PC]:8080/ps3_buscador.html</code>
+<div class="info">
+  <b>Estado del proxy:</b> Este portal esta hosteado en GitHub Pages con Cloudflare como CDN.<br>
+  Si la busqueda principal no funciona, edita el Worker y reemplaza la URL del worker en este archivo.<br>
+  <b>TLS minimo en Cloudflare:</b> SSL/TLS &rarr; Edge Certificates &rarr; Minimum TLS Version &rarr; <code>TLS 1.0</code>
 </div>
+
+<script>
+function buscarWorker() {
+  var q = document.getElementById('q1').value;
+  if (!q) return;
+  // REEMPLAZA esta URL con la de tu Worker desplegado
+  var workerUrl = 'https://ps3-search.TU-USUARIO.workers.dev/?q=' + encodeURIComponent(q);
+  window.location = workerUrl;
+}
+
+// Permitir Enter en el campo del worker
+document.getElementById('q1').addEventListener('keydown', function(e) {
+  if (e.keyCode === 13) buscarWorker();
+});
+</script>
 
 </body>
 </html>
