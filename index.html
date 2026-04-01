@@ -1,27 +1,146 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Test en PS3</title>
-    <style>
-        body { font-family: sans-serif; text-align: center; background: #222; color: white; padding: 50px; }
-        .container { border: 2px solid #555; padding: 20px; display: inline-block; }
-        img { max-width: 100%; height: auto; border: 1px solid #fff; }
-        .status { margin-top: 20px; font-weight: bold; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Buscador PS3</title>
+<style>
+body {
+  background: #1a1a2e;
+  color: #e0e0e0;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 20px;
+  font-size: 16px;
+}
+h1 {
+  color: #00b4d8;
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+p.sub {
+  text-align: center;
+  color: #aaa;
+  font-size: 13px;
+  margin-bottom: 30px;
+}
+.search-box {
+  background: #16213e;
+  border: 1px solid #0f3460;
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+.search-box h2 {
+  color: #00b4d8;
+  font-size: 15px;
+  margin: 0 0 10px 0;
+}
+.search-box p.desc {
+  color: #888;
+  font-size: 12px;
+  margin: 0 0 10px 0;
+}
+input[type="text"] {
+  width: 68%;
+  padding: 8px 10px;
+  font-size: 15px;
+  border: 1px solid #0f3460;
+  background: #0d1b2a;
+  color: #fff;
+  border-radius: 4px;
+}
+input[type="submit"] {
+  padding: 8px 16px;
+  font-size: 14px;
+  background: #00b4d8;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 8px;
+  font-weight: bold;
+}
+.tip {
+  background: #0f3460;
+  border-left: 4px solid #00b4d8;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #ccc;
+  margin-top: 24px;
+}
+.tip b { color: #00b4d8; }
+a { color: #00b4d8; }
+</style>
 </head>
 <body>
 
-    <h2>Prueba de Formato WebP</h2>
-    
-    <div class="container">
-        <p>Si ves la imagen debajo, la PS3 **sí** soporta WebP:</p>
-        <img src="test.webp" alt="Error: La imagen no se pudo cargar">
-    </div>
+<h1>&#9679; Buscador PS3</h1>
+<p class="sub">Portal de busqueda optimizado para el navegador de PlayStation 3</p>
 
-    <div class="status">
-        <p>Nota: Si ves el texto "Error", el navegador no reconoce el formato.</p>
-    </div>
+<!-- DuckDuckGo Lite - Mejor opcion para PS3 -->
+<div class="search-box">
+  <h2>&#9733; DuckDuckGo Lite <span style="color:#4caf50;font-size:11px;">[RECOMENDADO]</span></h2>
+  <p class="desc">Version minimalista, sin rastreo, compatible con navegadores antiguos.</p>
+  <form method="GET" action="https://lite.duckduckgo.com/lite/">
+    <input type="text" name="q" placeholder="Buscar en DuckDuckGo...">
+    <input type="submit" value="Buscar">
+  </form>
+</div>
+
+<!-- Wiby - motor simple -->
+<div class="search-box">
+  <h2>Wiby.me <span style="color:#ff9800;font-size:11px;">[PAGINAS CLASICAS]</span></h2>
+  <p class="desc">Busca sitios web simples y livianos, ideal para navegadores retro.</p>
+  <form method="GET" action="https://wiby.me/">
+    <input type="text" name="q" placeholder="Buscar en Wiby...">
+    <input type="submit" value="Buscar">
+  </form>
+</div>
+
+<!-- Bing basico -->
+<div class="search-box">
+  <h2>Bing</h2>
+  <p class="desc">Puede funcionar si se usa junto a un proxy local con TLS downgrade.</p>
+  <form method="GET" action="https://www.bing.com/search">
+    <input type="text" name="q" placeholder="Buscar en Bing...">
+    <input type="submit" value="Buscar">
+  </form>
+</div>
+
+<!-- Wikipedia -->
+<div class="search-box">
+  <h2>Wikipedia</h2>
+  <p class="desc">Busca directamente en Wikipedia en espanol.</p>
+  <form method="GET" action="https://es.wikipedia.org/w/index.php">
+    <input type="text" name="search" placeholder="Buscar en Wikipedia...">
+    <input type="hidden" name="ns0" value="1">
+    <input type="submit" value="Buscar">
+  </form>
+</div>
+
+<!-- Archive.org -->
+<div class="search-box">
+  <h2>Internet Archive / Wayback Machine</h2>
+  <p class="desc">Accede a versiones antiguas de sitios web.</p>
+  <form method="GET" action="https://web.archive.org/web/*/">
+    <input type="text" name="q" placeholder="URL o tema a buscar...">
+    <input type="submit" value="Buscar">
+  </form>
+</div>
+
+<div class="tip">
+  <b>Consejo TLS:</b> Si los buscadores no cargan, el problema es el protocolo SSL/TLS. 
+  La PS3 solo soporta TLS 1.0 y la mayoria de sitios requieren TLS 1.2+.<br><br>
+  <b>Solucion local:</b> Instala <b>stunnel</b> o <b>Squid Proxy</b> en tu PC/router y 
+  configura la PS3 para usarlo. Esto hace el "puente" de TLS 1.0 a TLS 1.2 
+  de forma transparente.<br><br>
+  <b>Para hostear este archivo localmente (HTTP puro, sin TLS):</b><br>
+  En Windows: <code>python -m http.server 8080</code> en la carpeta con este archivo.<br>
+  Luego en PS3 accede a: <code>http://[IP-de-tu-PC]:8080/ps3_buscador.html</code>
+</div>
 
 </body>
 </html>
